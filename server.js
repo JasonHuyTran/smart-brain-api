@@ -3,37 +3,20 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 
+
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const database = {
-    users: [
-        {
-            id: '123',
-            name: 'John',
-            email: 'john@gmail.com',
-            password: 'cookies',
-            entries: 0,
-            joined: new Date()
-        },
-        {
-            id: '1234',
-            name: 'Sally',
-            password: 'cream',
-            email: 'Sally@gmail.com',
-            entries: 0,
-            joined: new Date()
-        }
-    ],
-    login: [
-        {
-            id: '987',
-            hash: '',
-            email: 'john@gmail.com'
-        }
-    ]
-}
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      user : 'your_database_user',
+      password : 'your_database_password',
+      database : 'myapp_test'
+    }
+  });
 
 app.get('/', (req, res) => {
     res.send(database.users);
