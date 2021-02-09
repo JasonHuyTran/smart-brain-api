@@ -14,10 +14,8 @@ app.use(cors());
 const db = require('knex')({
     client: 'pg',
     connection: {
-      host : 'ec2-54-162-119-125.compute-1.amazonaws.com',
-      user : 'vnrylkoulenugq',
-      password : '27e6af0ddd004f5d7953753009a3c1735a0a3a618e19eabe750eb192c3cfa24b',
-      database : 'd8gqtq13iu7h9i'
+      host : process.env.DATABASE_URL,
+      ssl: true
     }
 });
 
