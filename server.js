@@ -5,8 +5,7 @@ const cors = require('cors');
 
 const register = require('./controllers/register.js');
 const signin = require('./controllers/signin.js');
-const profile = require('./controllers/image.js');
-
+const image = require('./controllers/image.js');
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,13 +25,13 @@ app.post('/signin', (req, res) => signin.handleSignin(req, res, db, bcrypt));
 
 app.post('/register', (req, res) => register.handleRegister(req, res, db, bcrypt));
 
-app.put('/image', (req, res) => profile.handleProfileGet(req, res));
+app.put('/image', (req, res) => image.handleImage(req, res, db));
 
 app.listen((3000), () => {
     console.log('app is running on port 3000');
 });
 
-
+// //implement later 
 // app.get('/profile/:id', (req, res) => {
 //     const {id} = req.params;
 //     db.select('*').from('users').where('id', id).then(user => {
